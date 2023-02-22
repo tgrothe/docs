@@ -22,6 +22,7 @@ jobs:
             scheme-basic
             ieeetran
             collection-fontsrecommended
+            xcolor
       - name: Check tlmgr version
         run: tlmgr --version
       - name: Build

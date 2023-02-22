@@ -11,11 +11,11 @@ jobs:
       - name: Install
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: pandoc pandoc-citeproc texlive-full
+          packages: pandoc pandoc-citeproc texlive texlive-lang-german
           version: 1.0
       - name: Build
         run: |
-          find . -name '*.md' -exec pandoc -f markdown -t pdf {} \;
+          find . -name '*.md' -exec pandoc -f markdown -t pdf {} -o {}.pdf \;
       - name: Upload
         run: |
           git config user.email "tgrothe@users.noreply.github.com"

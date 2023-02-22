@@ -13,7 +13,7 @@ jobs:
       - name: Prettify code
         uses: creyD/prettier_action@master
         with:
-          prettier_options: --write *.{md}
+          prettier_options: --write **/*.md
       - name: Install packages
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:

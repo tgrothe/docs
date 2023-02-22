@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
       - name: Install
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:

@@ -13,7 +13,7 @@ jobs:
       - name: Install packages
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: pandoc
+          packages: pandoc pandoc-citeproc
           version: 1.0
       - name: Setup TeX Live
         uses: teatimeguest/setup-texlive-action@v2
@@ -22,7 +22,7 @@ jobs:
             scheme-basic
             ieeetran
             collection-fontsrecommended
-      - name: Check `tlmgr` version
+      - name: Check tlmgr version
         run: tlmgr --version
       - name: Build
         run: |

@@ -1,0 +1,22 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install
+        run: |
+          sudo apt update
+          sudo apt install pandoc pandoc-citeproc texlive-full
+      - name: Build
+        run: |
+          pandoc *.md
+      - name: Upload
+        run: |
+          git add .
+          git commit -m "Msg"
+          git push

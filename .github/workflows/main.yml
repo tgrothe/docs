@@ -15,7 +15,7 @@ jobs:
           version: 1.0
       - name: Build
         run: |
-          pandoc *.md -f markdown {.}.pdf
+          find . -name '*.md' -exec pandoc -f markdown -t pdf {} \;
       - name: Upload
         run: |
           git config user.email "tgrothe@users.noreply.github.com"

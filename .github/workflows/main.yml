@@ -1,0 +1,41 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Prettify code
+        uses: creyD/prettier_action@master
+        with:
+          prettier_options: --write **/*.md
+      - name: Install packages
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: pandoc pandoc-citeproc
+          version: 1.0
+      - name: Setup TeX Live
+        uses: teatimeguest/setup-texlive-action@v2
+        with:
+          packages: >-
+            scheme-basic
+            ieeetran
+            collection-fontsrecommended
+            xcolor
+      - name: Check tlmgr version
+        run: tlmgr --version
+      - name: Build
+        run: |
+          find . -name '*.md' -exec pandoc -f markdown -t pdf -V papersize:a4 {} -o {}.pdf \;
+      - name: Upload
+        run: |
+          git config user.email "tgrothe@users.noreply.github.com"
+          git config user.name "tgrothe"
+          git add .
+          git commit -m "Automatically generated pdf file(s)"
+          git push

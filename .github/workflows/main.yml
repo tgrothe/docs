@@ -9,12 +9,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install
-        run: |
-          sudo apt update
-          sudo apt install pandoc pandoc-citeproc texlive-full
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: pandoc pandoc-citeproc texlive-full
+          version: 1.0
       - name: Build
         run: |
-          pandoc *.md
+          pandoc *.md -f markdown {.}.pdf
       - name: Upload
         run: |
           git config user.email "tgrothe@users.noreply.github.com"

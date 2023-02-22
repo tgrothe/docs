@@ -19,7 +19,7 @@ jobs:
         uses: teatimeguest/setup-texlive-action@v2
         with:
           packages: >-
-            pdftex
+            scheme-basic
       - name: Check `tlmgr` version
         run: tlmgr --version
       - name: Build

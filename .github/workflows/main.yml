@@ -13,7 +13,7 @@ jobs:
       - name: Install
         uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: pandoc pandoc-citeproc texlive texlive-lang-german
+          packages: pandoc pandoc-citeproc texlive-full
           version: 1.0
       - name: Build
         run: |

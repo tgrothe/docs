@@ -31,8 +31,7 @@ jobs:
         run: tlmgr --version
       - name: Build
         run: |
-          git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
-          for f in $(git diff --name-only origin); do if [[ $f == *.md ]]; then pandoc -f markdown -t pdf -V papersize:a4 -V geometry:margin=1in -o "$f.pdf" "$f"; fi done
+          for f in $(git diff --name-only ${{ github.head_ref }}); do if [[ $f == *.md ]]; then pandoc -f markdown -t pdf -V papersize:a4 -V geometry:margin=1in -o "$f.pdf" "$f"; fi done
       - name: Upload
         continue-on-error: true
         run: |

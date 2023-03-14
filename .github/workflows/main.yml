@@ -31,7 +31,7 @@ jobs:
         run: tlmgr --version
       - name: Build
         run: |
-          for f in $(git diff --name-only main); do if [[ $f == *.md ]]; then pandoc -f markdown -t pdf -V papersize:a4 -V geometry:margin=1in -o "$f.pdf" "$f"; fi done
+          for f in $(git diff --name-only main...); do if [[ $f == *.md ]]; then pandoc -f markdown -t pdf -V papersize:a4 -V geometry:margin=1in -o "$f.pdf" "$f"; fi done
       - name: Upload
         run: |
           git config user.email "tgrothe@users.noreply.github.com"

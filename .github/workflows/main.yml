@@ -31,8 +31,10 @@ jobs:
         run: tlmgr --version
       - name: Build
         run: |
-          find . -name '*.md' -exec pandoc -f markdown -t pdf -V papersize:a4 {} -o {}.pdf \;
+          git fetch origin
+          for f in $(git diff --name-only origin/main); do if [[ $f == *.md ]]; then pandoc -f markdown -t pdf -V papersize:a4 -V geometry:margin=1in -o "$f.pdf" "$f"; fi done
       - name: Upload
+        continue-on-error: true
         run: |
           git config user.email "tgrothe@users.noreply.github.com"
           git config user.name "tgrothe"

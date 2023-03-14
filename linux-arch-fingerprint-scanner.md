@@ -1,3 +1,5 @@
+## Linux Arch fingerprint scanner that is unsupported by fprint
+
 ### Links:
 
 - https://wiki.archlinux.org/title/fprint
@@ -38,8 +40,4 @@ Make sure you can see the connected sensor by typing `lsusb`.
         auth		sufficient  	pam_unix.so try_first_pass likeauth nullok
         auth		sufficient  	pam_fprintd.so
 
-Now everything should work fine.
-You should be first asked for your PWD;
-but by typing Enter, you should be asked
-for your fingerprint scan; except for sudo requests:
-here you should only be asked for fingerprint scan.
+Now everything should work fine. You should be first asked for your PWD; but by typing Enter, you should be asked for your fingerprint scan; except for sudo requests: here you should only be asked for fingerprint scan.

@@ -31,7 +31,8 @@ jobs:
         run: tlmgr --version
       - name: Build
         run: |
-          for f in $(git diff --name-only ${{ github.head_ref }} $(git merge-base ${{ github.head_ref }} main)); do if [[ $f == *.md ]]; then pandoc -f markdown -t pdf -V papersize:a4 -V geometry:margin=1in -o "$f.pdf" "$f"; fi done
+          git checkout ${{ github.head_ref }}
+          for f in $(git diff --name-only main); do if [[ $f == *.md ]]; then pandoc -f markdown -t pdf -V papersize:a4 -V geometry:margin=1in -o "$f.pdf" "$f"; fi done
       - name: Upload
         continue-on-error: true
         run: |
